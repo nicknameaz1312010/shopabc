@@ -1,4 +1,5 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { useEffect } from 'react'
+import { BrowserRouter, Routes, Route, useNavigate, useLocation } from 'react-router-dom'
 import { AuthProvider } from './context/AuthContext'
 import { CartProvider } from './context/CartContext'
 import { OrderProvider } from './context/OrderContext'
@@ -16,9 +17,24 @@ import Admin from './pages/Admin'
 import Search from './pages/Search'
 import ChatWidget from './components/ChatWidget'
 
+function GitHubPagesRedirect() {
+  const navigate = useNavigate()
+  const location = useLocation()
+  useEffect(() => {
+    const redirect = sessionStorage.getItem('redirect')
+    if (redirect) {
+      sessionStorage.removeItem('redirect')
+      const url = new URL(redirect)
+      navigate(url.pathname.replace('/asme-landing', '') + url.search + url.hash, { replace: true })
+    }
+  }, [])
+  return null
+}
+
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/asme-landing">
+      <GitHubPagesRedirect />
       <AuthProvider>
         <CartProvider>
           <OrderProvider>
