@@ -52,7 +52,7 @@ export function OrderProvider({ children }) {
 
   const addOrder = useCallback((orderData) => {
     const order = {
-      id: 'ASM' + String(Date.now()).slice(-6),
+      id: 'ORD' + String(Date.now()).slice(-6),
       userId: user?.id,
       createdAt: Date.now(),
       status: 'pending',
