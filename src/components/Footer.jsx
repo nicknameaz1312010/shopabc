@@ -33,8 +33,8 @@ export default function Footer() {
             </Link>
             <p className="text-xs text-gray-500 mt-3 leading-relaxed">
               Công ty TNHH ShopABC Việt Nam<br />
-              123 Nguyễn Huệ, Q.1, TP.HCM<br />
-              Hotline: 1900 100
+              xã trên trời, tỉnh dưới đất, huyện luyên thuyên<br />
+              Hotline: 1900 100 biết
             </p>
             <div className="flex items-center gap-2 mt-4">
               {socials.map((s, i) => (
