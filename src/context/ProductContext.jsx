@@ -2,7 +2,7 @@ import { createContext, useContext, useReducer, useCallback, useMemo, useEffect 
 import staticProducts, { priceRanges } from '../data/products'
 
 const ProductContext = createContext(null)
-const STORAGE_KEY = 'asme_admin_products'
+const STORAGE_KEY = 'shoabc_admin_products'
 
 function loadAdminProducts() {
   try {

@@ -39,7 +39,7 @@ export default function Home() {
               <span className="text-red-600">Giá tốt mỗi ngày</span>
             </h1>
             <p className="text-gray-500 mt-4 max-w-xl mx-auto text-sm">
-              Sản phẩm chính hãng, giá tốt nhất, giao hàng siêu tốc. Mua sắm thông minh cùng Asme.
+              Sản phẩm chính hãng, giá tốt nhất, giao hàng siêu tốc. Mua sắm thông minh cùng Shoabc.
             </p>
           </motion.div>
 
@@ -128,7 +128,7 @@ export default function Home() {
           <div className="flex items-center justify-between mb-8">
             <div>
               <h2 className="text-lg md:text-xl font-semibold text-gray-900">Sản phẩm mới</h2>
-              <p className="text-xs text-gray-400 mt-1">Vừa cập bến Asme</p>
+              <p className="text-xs text-gray-400 mt-1">Vừa cập bến Shoabc</p>
             </div>
             <Link to="/products" className="text-xs text-gray-400 hover:text-red-600 transition-colors">Xem tất cả</Link>
           </div>
