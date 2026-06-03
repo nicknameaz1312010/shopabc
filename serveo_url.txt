@@ -1,0 +1,3 @@
+[32mForwarding HTTP traffic from https://aad879e74d35d2d9-171-224-180-13.serveousercontent.com
+[0m[33mTip (1): Create an account to reserve names. Pro removes the warning page: https://console.serveo.net/settings?n=1&src=ssh_nudge&v=A
+[0m
