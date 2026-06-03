@@ -38,7 +38,7 @@ export default function Header() {
     <header className="fixed top-0 left-0 right-0 z-40 bg-white border-b border-gray-200">
       <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-4">
         <Link to="/" className="text-xl font-bold text-gray-900 tracking-tight shrink-0">
-          <span className="text-red-600">AS</span>ME
+          ShopABC
         </Link>
 
         <nav ref={megaRef} className="hidden lg:flex items-center gap-1">

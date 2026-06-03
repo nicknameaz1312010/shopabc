@@ -29,12 +29,12 @@ export default function Footer() {
         <div className="grid md:grid-cols-4 gap-8 mb-10">
           <div>
             <Link to="/" className="text-xl font-bold text-gray-900 tracking-tight">
-              <span className="text-red-600">AS</span>ME
+              ShopABC
             </Link>
             <p className="text-xs text-gray-500 mt-3 leading-relaxed">
               Công ty TNHH ShopABC Việt Nam<br />
               123 Nguyễn Huệ, Q.1, TP.HCM<br />
-              Hotline: 1900 1234
+              Hotline: 1900 100
             </p>
             <div className="flex items-center gap-2 mt-4">
               {socials.map((s, i) => (
