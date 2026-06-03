@@ -110,7 +110,7 @@ export default function Checkout() {
                   <label className={`flex items-center gap-3 p-3.5 rounded-xl border cursor-pointer transition-all ${payment === 'bank' ? 'border-red-400 bg-red-50' : 'border-gray-200 hover:border-gray-300'}`}>
                     <input type="radio" name="payment" checked={payment === 'bank'} onChange={() => setPayment('bank')} className="accent-red-600" />
                     <CreditCard className="w-5 h-5 text-gray-400" />
-                    <div><p className="text-sm text-gray-900 font-medium">Chuyển khoản ngân hàng</p><p className="text-xs text-gray-400">VIB 0123456789 - Shoabc</p></div>
+                    <div><p className="text-sm text-gray-900 font-medium">Chuyển khoản ngân hàng</p><p className="text-xs text-gray-400">VIB 0123456789 - ShopABC</p></div>
                   </label>
                 </div>
               </div>

@@ -2,7 +2,7 @@ import { createContext, useContext, useReducer, useCallback, useMemo, useEffect 
 import { useAuth } from './AuthContext'
 
 const MessageContext = createContext(null)
-const STORAGE_KEY = 'shoabc_chat_conversations'
+const STORAGE_KEY = 'shopabc_chat_conversations'
 
 function loadConversations() {
   try {

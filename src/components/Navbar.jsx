@@ -23,7 +23,7 @@ export default function Navbar() {
         <div className="flex items-center gap-8">
           <Link to="/" className="flex items-center gap-2">
             <Globe className="w-6 h-6 text-white" />
-            <span className="text-white font-semibold text-lg">Shoabc</span>
+            <span className="text-white font-semibold text-lg">ShopABC</span>
           </Link>
           <div className="hidden md:flex items-center gap-8 text-white/80 text-sm font-medium">
             {links.map(link => (

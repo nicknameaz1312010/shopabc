@@ -2,7 +2,7 @@ import { createContext, useContext, useReducer, useCallback, useMemo, useEffect 
 import { useAuth } from './AuthContext'
 
 const OrderContext = createContext(null)
-const STORAGE_KEY = 'shoabc_orders'
+const STORAGE_KEY = 'shopabc_orders'
 
 function loadOrders() {
   try {

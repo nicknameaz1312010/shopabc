@@ -39,7 +39,7 @@ export default function ChatWidget() {
             <div className="flex items-center justify-between px-4 py-3 border-b border-gray-200 bg-gray-50">
               <div>
                 <p className="text-xs font-medium text-gray-900">Hỗ trợ trực tuyến</p>
-                <p className="text-[10px] text-gray-400">{isAdmin ? `Quản trị (${conversations.length} cuộc hội thoại)` : 'Shoabc sẽ phản hồi sớm'}</p>
+                <p className="text-[10px] text-gray-400">{isAdmin ? `Quản trị (${conversations.length} cuộc hội thoại)` : 'ShopABC sẽ phản hồi sớm'}</p>
               </div>
               <button onClick={() => { setOpen(false); setSelectedUser(null) }} className="text-gray-400 hover:text-gray-700 cursor-pointer"><X className="w-4 h-4" /></button>
             </div>

@@ -25,7 +25,7 @@ function GitHubPagesRedirect() {
     if (redirect) {
       sessionStorage.removeItem('redirect')
       const url = new URL(redirect)
-      navigate(url.pathname.replace('/shoabc.com', '') + url.search + url.hash, { replace: true })
+      navigate(url.pathname.replace('/shopabc', '') + url.search + url.hash, { replace: true })
     }
   }, [])
   return null
@@ -33,7 +33,7 @@ function GitHubPagesRedirect() {
 
 export default function App() {
   return (
-    <BrowserRouter basename="/shoabc.com">
+    <BrowserRouter basename="/shopabc">
       <GitHubPagesRedirect />
       <AuthProvider>
         <CartProvider>

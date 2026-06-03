@@ -17,7 +17,7 @@ const columns = [
     links: ['Trung tâm bảo hành', 'Chính sách đổi trả', 'Hướng dẫn mua hàng', 'Thanh toán', 'Vận chuyển'],
   },
   {
-    title: 'Về Shoabc',
+    title: 'Về ShopABC',
     links: ['Giới thiệu', 'Tuyển dụng', 'Liên hệ', 'Điều khoản', 'Bảo mật'],
   },
 ]
@@ -32,7 +32,7 @@ export default function Footer() {
               <span className="text-red-600">AS</span>ME
             </Link>
             <p className="text-xs text-gray-500 mt-3 leading-relaxed">
-              Công ty TNHH Shoabc Việt Nam<br />
+              Công ty TNHH ShopABC Việt Nam<br />
               123 Nguyễn Huệ, Q.1, TP.HCM<br />
               Hotline: 1900 1234
             </p>
@@ -56,7 +56,7 @@ export default function Footer() {
           ))}
         </div>
         <div className="border-t border-gray-200 pt-6 flex flex-col md:flex-row items-center justify-between gap-3">
-          <p className="text-[10px] text-gray-400">&copy; 2024 Shoabc. Tất cả quyền được bảo lưu.</p>
+          <p className="text-[10px] text-gray-400">&copy; 2024 ShopABC. Tất cả quyền được bảo lưu.</p>
           <div className="flex items-center gap-4 text-[10px] text-gray-400">Chính sách bảo mật · Điều khoản sử dụng</div>
         </div>
       </div>
