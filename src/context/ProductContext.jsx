@@ -1,91 +1,71 @@
 import { createContext, useContext, useReducer, useCallback, useMemo, useEffect } from 'react'
-import staticProducts, { priceRanges } from '../data/products'
+import { api } from '../api'
+import { priceRanges } from '../data/products'
 
 const ProductContext = createContext(null)
-const STORAGE_KEY = 'shopabc_admin_products'
-
-function loadAdminProducts() {
-  try {
-    const stored = localStorage.getItem(STORAGE_KEY)
-    return stored ? JSON.parse(stored) : []
-  } catch { return [] }
-}
-
-function saveAdminProducts(adminProducts) {
-  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(adminProducts)) } catch {} 
-}
 
 function productReducer(state, action) {
   switch (action.type) {
-    case 'ADD_PRODUCT': {
-      const newAdmin = [...state.adminProducts, action.product]
-      saveAdminProducts(newAdmin)
-      return { ...state, adminProducts: newAdmin }
-    }
-    case 'UPDATE_PRODUCT': {
-      const newAdmin = state.adminProducts.map(p =>
-        p.id === action.product.id ? action.product : p
-      )
-      saveAdminProducts(newAdmin)
-      return { ...state, adminProducts: newAdmin }
-    }
-    case 'DELETE_PRODUCT': {
-      const newAdmin = state.adminProducts.filter(p => p.id !== action.id)
-      saveAdminProducts(newAdmin)
-      return { ...state, adminProducts: newAdmin }
-    }
-    case 'SYNC_PRODUCTS':
-      return { ...state, adminProducts: action.adminProducts }
-    default:
-      return state
+    case 'SET_PRODUCTS': return { ...state, products: action.products, loading: false }
+    case 'ADD_PRODUCT': return { ...state, adminProducts: [...state.adminProducts, action.product] }
+    case 'UPDATE_PRODUCT': return { ...state, adminProducts: state.adminProducts.map(p => p.id === action.product.id ? action.product : p) }
+    case 'DELETE_PRODUCT': return { ...state, adminProducts: state.adminProducts.filter(p => p.id !== action.id) }
+    case 'SET_LOADING': return { ...state, loading: action.loading }
+    default: return state
   }
 }
 
 export function ProductProvider({ children }) {
-  const [state, dispatch] = useReducer(productReducer, { adminProducts: loadAdminProducts() })
+  const [state, dispatch] = useReducer(productReducer, { products: [], adminProducts: [], loading: true })
 
   useEffect(() => {
-    function handleStorage(e) {
-      if (e.key === STORAGE_KEY) {
-        try { dispatch({ type: 'SYNC_PRODUCTS', adminProducts: JSON.parse(e.newValue) || [] }) } catch {}
-      }
+    api.getProducts().then(({ products }) => {
+      dispatch({ type: 'SET_PRODUCTS', products })
+    }).catch(() => {
+      dispatch({ type: 'SET_PRODUCTS', products: [] })
+    })
+  }, [])
+
+  const addProduct = useCallback(async (product) => {
+    const newProduct = { ...product, id: Date.now(), rating: 0, reviewCount: 0 }
+    try {
+      const { product: saved } = await api.createProduct(product)
+      dispatch({ type: 'ADD_PRODUCT', product: saved })
+      return saved
+    } catch {
+      dispatch({ type: 'ADD_PRODUCT', product: newProduct })
+      return newProduct
     }
-    window.addEventListener('storage', handleStorage)
-    return () => window.removeEventListener('storage', handleStorage)
   }, [])
 
-  const addProduct = useCallback((product) => {
-    const newProduct = {
-      ...product,
-      id: Date.now(),
-      rating: 0,
-      reviewCount: 0,
+  const updateProduct = useCallback(async (product) => {
+    try {
+      const { product: updated } = await api.updateProduct(product.id, product)
+      dispatch({ type: 'UPDATE_PRODUCT', product: updated })
+    } catch {
+      dispatch({ type: 'UPDATE_PRODUCT', product })
     }
-    dispatch({ type: 'ADD_PRODUCT', product: newProduct })
-    return newProduct
   }, [])
 
-  const updateProduct = useCallback((product) => {
-    dispatch({ type: 'UPDATE_PRODUCT', product })
-  }, [])
-
-  const deleteProduct = useCallback((id) => {
+  const deleteProduct = useCallback(async (id) => {
+    try { await api.deleteProduct(id) } catch {}
     dispatch({ type: 'DELETE_PRODUCT', id })
   }, [])
 
   const value = useMemo(() => {
-    const allProducts = [...staticProducts, ...state.adminProducts]
+    const allProducts = [...state.products, ...state.adminProducts.filter(ap => !state.products.find(p => p.id === ap.id))]
     const brands = [...new Set(allProducts.map(p => p.brand).filter(Boolean))]
     return {
       products: allProducts,
       adminProducts: state.adminProducts,
       brands,
       priceRanges,
+      loading: state.loading,
       addProduct,
       updateProduct,
       deleteProduct,
     }
-  }, [state.adminProducts, addProduct, updateProduct, deleteProduct])
+  }, [state.products, state.adminProducts, state.loading, addProduct, updateProduct, deleteProduct])
 
   return (
     <ProductContext.Provider value={value}>

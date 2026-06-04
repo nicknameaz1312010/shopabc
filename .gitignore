@@ -9,6 +9,11 @@ lerna-debug.log*
 
 node_modules
 dist
+server/node_modules
+server/shopabc.db
+server/uploads
+server/*.log
+server/*.err
 dist-ssr
 *.local
 
